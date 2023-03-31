@@ -3,8 +3,9 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'androidx.navigation.safeargs.kotlin'
     id 'kotlin-parcelize'
-
+    id 'dagger.hilt.android.plugin'
     id 'kotlin-kapt'
+
 }
 
 android {
@@ -79,6 +80,10 @@ dependencies {
 
     //DataStore
     implementation "androidx.datastore:datastore-preferences:1.0.0"
+
+    //LottiAnim
+    implementation "com.airbnb.android:lottie:5.2.0"
+
 
 
 }
