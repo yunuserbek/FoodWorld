@@ -2,11 +2,10 @@ package com.food.foodworld.ui.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.food.foodworld.common.extension.glideImage
+import com.food.common.model.RandomUIModel
+import com.food.foodworld.utility.glideImage
 import com.food.foodworld.databinding.ItemHomeRandomBinding
-import com.food.foodworld.domain.model.RandomUIModel
 
 class RandomAdapter : RecyclerView.Adapter<RandomAdapter.RandomViewHolder>() {
     var itemlist = ArrayList<RandomUIModel>()
@@ -26,7 +25,7 @@ class RandomAdapter : RecyclerView.Adapter<RandomAdapter.RandomViewHolder>() {
     }
     inner class RandomViewHolder(private var binding: ItemHomeRandomBinding) :
         RecyclerView.ViewHolder(binding.root) {
-            fun bind(item:RandomUIModel)= with(binding){
+            fun bind(item: RandomUIModel)= with(binding){
                 binding.ivCategoryItem.glideImage(item.image)
                 binding.tvCategoryName.text = item.title
 

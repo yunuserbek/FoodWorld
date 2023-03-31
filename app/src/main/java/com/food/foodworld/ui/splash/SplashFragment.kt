@@ -5,7 +5,7 @@ import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.gameinformation.common.delegation.viewBinding
+import com.food.foodworld.utility.delegation.viewBinding
 import com.food.foodworld.R
 import com.food.foodworld.databinding.FragmentSplashBinding
 import dagger.hilt.android.AndroidEntryPoint

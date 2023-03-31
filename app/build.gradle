@@ -43,7 +43,8 @@ android {
 
 dependencies {
 
-
+    implementation project(path: ':domain')
+    implementation project(path: ':common')
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     def retrofit_version = "2.9.0"
     def retrofit_interceptor_version = "4.9.3"
