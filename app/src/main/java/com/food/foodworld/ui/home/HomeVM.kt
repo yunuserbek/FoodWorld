@@ -20,7 +20,7 @@ class HomeVM @Inject constructor(private var RandomUseCase: RandomFoodUseCase) :
     }
 
     fun getRandomFood() = viewModelScope.launch {
-        RandomUseCase.invoke().collect {
+        RandomUseCase.invoke(50).collect {
             _randomFood.emit(it)
         }
     }

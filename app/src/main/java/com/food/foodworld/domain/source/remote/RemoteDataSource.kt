@@ -4,5 +4,5 @@ import com.food.foodworld.data.remote.RandomFood
 
 interface RemoteDataSource {
 
-suspend fun getRandomFood(): RandomFood
+suspend fun getRandomFood(count:Int): RandomFood
 }
