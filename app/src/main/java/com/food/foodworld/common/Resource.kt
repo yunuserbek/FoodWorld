@@ -1,5 +1,4 @@
-package com.example.gameinformation.common
-
+package com.food.foodworld.common
 
 sealed class Resource<out T : Any> {
     object Loading : Resource<Nothing>()

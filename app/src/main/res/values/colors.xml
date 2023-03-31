@@ -9,4 +9,14 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="colorPrimaryDark">#c1185b</color>
+    <color name="colorPrimary">#E4373E</color>
+    <color name="colorAccent">#E4373E</color>
+    <color name="colorBackground">#F8F8F8</color>
+    <color name="colorSurface">#FFFFFF</color>
+    <color name="colorOnSurface">#E6000000</color>
+    <color name="transparent">#00FFFFFF</color>
+    <color name="rippleOnAccent">#3DFFFFFF</color>
+    <color name="rippleOnSurface">#1A000000</color>
+    <color name="opaqueOverlay">#38000000</color>
+    <color name="colorOnOverlay">#FFFFFF</color>
 </resources>

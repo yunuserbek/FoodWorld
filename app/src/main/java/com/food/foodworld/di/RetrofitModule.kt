@@ -10,6 +10,7 @@ import dagger.hilt.components.SingletonComponent
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Protocol
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
@@ -20,25 +21,16 @@ import javax.inject.Singleton
 object RetrofitModule {
 
 
-    //    @Provides
-//    @Singleton
-//    fun provideFoodService(): FoodService = Retrofit.Builder()
-//        .baseUrl(BASE_URL)
-//        .addConverterFactory(GsonConverterFactory.create())
-//        .client(getOkHttpClient(getInterceptor()))
-//        .build()
-//        .create(FoodService::class.java)
-    @Provides
-    @Singleton
-    fun provideRetrofit(): Retrofit = Retrofit.Builder()
-        .baseUrl(BASE_URL)
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
+  @Provides
+  @Singleton
+   fun provideFoodService(): FoodServices = Retrofit.Builder()
+  .baseUrl(BASE_URL)
+  .addConverterFactory(GsonConverterFactory.create())
+  .client(getOkhttpClient(getInterceptor()))
+  .build()
+  .create(FoodServices::class.java)
 
-    @Singleton
-    @Provides
-    fun provideHomeService(retrofit: Retrofit): FoodServices =
-        retrofit.create(FoodServices::class.java)
+
 
     @Provides
     @Singleton
@@ -47,6 +39,7 @@ object RetrofitModule {
             val request = it.request().newBuilder()
                 .addHeader("Content-Type", "application/json")
                 .addHeader("x-api-key", API_KEY).build()
+
             it.proceed(request)
         }
     }
@@ -56,9 +49,14 @@ object RetrofitModule {
     fun getOkhttpClient(interceptor: Interceptor): OkHttpClient {
         val httpBuilder =OkHttpClient.Builder()
             .addInterceptor(interceptor)
+            .addInterceptor(HttpLoggingInterceptor().apply {
+                level = HttpLoggingInterceptor.Level.BODY
+            }
+            )
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(50, TimeUnit.SECONDS)
+
         return httpBuilder
             .protocols(mutableListOf(Protocol.HTTP_1_1))
             .build()

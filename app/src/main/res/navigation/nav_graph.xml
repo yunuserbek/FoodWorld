@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/foodFragment"
-        android:name="com.food.foodworld.FoodFragment"
+        android:name="com.food.foodworld.ui.home.HomeFragment"
         android:label="fragment_food"
-        tools:layout="@layout/fragment_food" />
+        tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.food.foodworld.ui.splash.SplashFragment"

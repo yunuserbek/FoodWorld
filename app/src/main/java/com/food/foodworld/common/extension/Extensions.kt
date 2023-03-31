@@ -1,7 +1,8 @@
-package com.example.gameinformation.common.extension
+package com.food.foodworld.common.extension
 
 import android.content.Context
 import android.graphics.drawable.Drawable
+import android.view.View
 import android.widget.ImageView
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
@@ -25,4 +26,12 @@ fun Context.circularProgressDrawable(): Drawable {
 }
 fun String.titleCaseFirstChar() = replaceFirstChar(Char::titlecase)
 
-val Context.dataStore by preferencesDataStore("last_searched")
+fun View.gone() {
+    visibility = View.GONE
+}
+
+fun View.visible() {
+    visibility = View.VISIBLE
+}
+
+
