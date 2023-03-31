@@ -3,6 +3,7 @@ package com.food.domain.usecase
 import com.food.common.Resource
 import com.food.common.model.RandomUIModel
 import com.food.domain.repository.FoodRepository
+import dagger.Binds
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

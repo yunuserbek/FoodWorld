@@ -22,10 +22,10 @@ import javax.inject.Singleton
 object RetrofitModule {
     @Provides
     @Singleton
-    fun provideFoodService(): FoodServices = Retrofit.Builder()
+    fun provideFoodService(okHttpClient: OkHttpClient): FoodServices = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
-        .client(getOkHttpClient(getInterceptor()))
+        .client(okHttpClient)
         .build()
         .create(FoodServices::class.java)
 
