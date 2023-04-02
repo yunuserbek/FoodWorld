@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.food.common.model.RandomUIModel
+import com.food.foodworld.R
 import com.food.foodworld.utility.glideImage
 import com.food.foodworld.databinding.ItemHomeRandomBinding
 

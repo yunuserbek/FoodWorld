@@ -4,7 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.food.common.Resource
 import com.food.common.model.RandomUIModel
+import com.food.domain.model.Menu
 import com.food.domain.usecase.RandomUseCase
+import com.food.foodworld.R
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
@@ -12,16 +14,29 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeVM @Inject constructor(private var randomUseCase: RandomUseCase) : ViewModel() {
-    private  val _randomFood = MutableStateFlow<Resource<List<RandomUIModel>>>(
-        Resource.Loading)
+    private val _randomFood = MutableStateFlow<Resource<List<RandomUIModel>>>(Resource.Loading)
+
+    //  val randomFood =_randomFood.asStateFlow()
     val randomFood get() = _randomFood
 
 
-
-    fun getRandomFood(count:Int) = viewModelScope.launch {
+    fun getRandomFood(count: Int) = viewModelScope.launch {
 
         randomUseCase(count).collect {
             _randomFood.emit(it)
         }
+    }
+
+    fun getMenu(): List<Menu> {
+        return listOf(
+Menu(1, R.drawable.breakfast, "Breakfast",-1),
+Menu(2, R.drawable.aparatif, "Appetizer",-1),
+Menu(3, R.drawable.soup, "Soup",-1),
+Menu(4, R.drawable.maincourse, "Main Course",-1),
+Menu(5, R.drawable.saladd, "Salad",-1),
+Menu(6, R.drawable.bread, "Bread",-1),
+Menu(7, R.drawable.drink, "Drink",-1),
+Menu(8, R.drawable.sweet, "Sweet",-1),
+        )
     }
 }

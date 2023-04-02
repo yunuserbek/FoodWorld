@@ -28,6 +28,33 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         />
+<TextView
+    android:layout_marginStart="20dp"
+    android:layout_marginTop="10dp"
+    android:id="@+id/categoryName"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="category"
+    app:layout_constraintStart_toStartOf="parent"
+    android:textSize="20dp"
+    android:textColor="@color/black"
+    app:layout_constraintTop_toBottomOf="@id/recyclerRandom"
+    android:fontFamily="@font/poppins_bold"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="10dp"
+        android:id="@+id/recyclerMenu"
+        android:layout_marginHorizontal="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toBottomOf="@+id/categoryName"
+        app:spanCount="2" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

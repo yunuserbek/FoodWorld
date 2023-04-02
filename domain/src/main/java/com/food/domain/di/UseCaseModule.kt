@@ -16,6 +16,6 @@ abstract class UseCaseModule {
 
     @Binds
     @Singleton
-    abstract fun bindGetRickAndMortyUseCase(useCase: RandomFoodUseCase): RandomUseCase}
+    abstract fun bindRandomUseCase(useCase: RandomFoodUseCase): RandomUseCase}
 
 

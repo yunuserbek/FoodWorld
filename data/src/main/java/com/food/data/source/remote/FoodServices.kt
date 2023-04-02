@@ -13,4 +13,5 @@ interface FoodServices {
         @Query("number") count: Int
     ): RandomFood
 
+    
 }
