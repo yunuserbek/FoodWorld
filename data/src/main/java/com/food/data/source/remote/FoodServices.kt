@@ -13,5 +13,10 @@ interface FoodServices {
         @Query("number") count: Int
     ): RandomFood
 
+    @GET(RANDOM)
+    suspend fun getCategory(
+        @Query("number") count: Int,
+        @Query("tags") category: String
+    ): RandomFood
     
 }

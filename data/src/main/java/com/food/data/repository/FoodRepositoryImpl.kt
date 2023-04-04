@@ -30,5 +30,22 @@ class FoodRepositoryImpl @Inject constructor(private val remoteDataSource: Remot
 
     }
 
+    override fun getFoodByCategory(
+        number: Int,
+        category: String
+    ): Flow<Resource<List<RandomUIModel>>> = flow{
+        emit(Resource.Loading)
+        val response = try{
+            remoteDataSource.getCategory(number,category)
+        }catch (e:IOException){
+            emit(Resource.Error(e))
+            null
+        }
+        response?.let{response->
+            emit(Resource.Success(response.recipes.RandomUIModelMap()))
+
+    }
+    }
+
 
 }

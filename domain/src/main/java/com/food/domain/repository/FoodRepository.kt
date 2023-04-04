@@ -6,4 +6,6 @@ import kotlinx.coroutines.flow.Flow
 interface FoodRepository {
 fun getFood(count:Int): Flow<Resource<List<RandomUIModel>>>
 
+fun getFoodByCategory(number:Int,category:String):Flow<Resource<List<RandomUIModel>>>
+
 }
