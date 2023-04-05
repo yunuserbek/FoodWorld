@@ -1,5 +1,6 @@
 package com.food.foodworld.ui.home
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.food.common.Resource
@@ -27,16 +28,17 @@ class HomeVM @Inject constructor(private var randomUseCase: RandomUseCase) : Vie
         }
     }
 
+
     fun getMenu(): List<Menu> {
         return listOf(
-Menu(1, R.drawable.breakfast, "Breakfast",-1),
-Menu(2, R.drawable.aparatif, "Appetizer",-1),
-Menu(3, R.drawable.soup, "Soup",-1),
-Menu(4, R.drawable.maincourse, "Main Course",-1),
-Menu(5, R.drawable.saladd, "Salad",-1),
-Menu(6, R.drawable.bread, "Bread",-1),
-Menu(7, R.drawable.drink, "Drink",-1),
-Menu(8, R.drawable.sweet, "Sweet",-1),
+Menu(1, R.drawable.breakfast, "breakfast",-1),
+Menu(2, R.drawable.aparatif, "appetizer",-1),
+Menu(3, R.drawable.soup, "soup",-1),
+Menu(4, R.drawable.maincourse, "main course",-1),
+Menu(5, R.drawable.saladd, "salad",-1),
+Menu(6, R.drawable.bread, "bread",-1),
+Menu(7, R.drawable.drink, "drink",-1),
+Menu(8, R.drawable.sweet, "sweet",-1),
         )
     }
 }

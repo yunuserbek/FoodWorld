@@ -9,7 +9,11 @@
         android:id="@+id/foodFragment"
         android:name="com.food.foodworld.ui.home.HomeFragment"
         android:label="fragment_food"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_foodFragment_to_categoryFragment"
+            app:destination="@id/categoryFragment" />
+    </fragment>
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.food.foodworld.ui.splash.SplashFragment"
@@ -18,5 +22,14 @@
         <action
             android:id="@+id/action_splashFragment_to_foodFragment"
             app:destination="@id/foodFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/categoryFragment"
+        android:name="com.food.foodworld.ui.Category.CategoryFragment"
+        android:label="fragment_category"
+        tools:layout="@layout/fragment_category" >
+        <argument
+            android:name="categoryName"
+            app:argType="string" />
     </fragment>
 </navigation>

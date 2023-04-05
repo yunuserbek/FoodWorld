@@ -6,6 +6,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.food.common.Resource
 import com.food.foodworld.R
 import com.food.foodworld.databinding.FragmentHomeBinding
@@ -40,8 +41,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) ,ClickedAny{
 
                 is Resource.Success -> {
                     binding.animLoading.isVisible = false
-                    randomAdapter.updateList(response.data)
                     binding.recyclerRandom.adapter = randomAdapter
+                    randomAdapter.updateList(response.data)
+
 
                 }
                 is Resource.Error -> {
@@ -60,8 +62,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) ,ClickedAny{
     }
 
     override fun onClickedAny(id: Int?, title: String?) {
-        context?.showToast(title.toString())
-        context?.showToast(id.toString())
+
+        val action =HomeFragmentDirections.actionFoodFragmentToCategoryFragment(title?:"")
+      findNavController().navigate(action)
 
     }
 

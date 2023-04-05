@@ -7,5 +7,6 @@ import javax.inject.Inject
 class RemoteDataSourceImpl @Inject constructor (private val foodServices: FoodServices) :
     RemoteDataSource {
     override suspend fun getRandomFood(count:Int): RandomFood = foodServices.getRandomFood(count)
-    override suspend fun fetCategory(number: Int, category: String): RandomFood =foodServices.getCategory(number,category)
+    override suspend fun getCategory(number: Int, category: String): RandomFood= foodServices.getCategory(number,category)
+
 }
