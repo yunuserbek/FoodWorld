@@ -26,30 +26,21 @@ class CategoryFragment : Fragment(R.layout.fragment_category) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val category = args.categoryName
-        viewModel.categoryFood(200, category)
+        viewModel.categoryFood(category)
         collectData()
     }
 
     private fun collectData() = viewLifecycleOwner.lifecycleScope.launch {
         viewModel.category.collect { response ->
-            when (response) {
-                is Resource.Loading -> {
 
-                    binding.animLoading.visible()
-                }
-                is Resource.Success -> {
                     binding.animLoading.gone()
                     binding.rv.adapter = categoryAdapter
-                    categoryAdapter.submitList(response.data)
+                    categoryAdapter.submitData(response)
 
 
 
-                }
-                is Resource.Error -> {
 
 
-                }
-            }
         }
     }
 

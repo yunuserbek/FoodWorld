@@ -3,6 +3,7 @@ package com.food.foodworld.ui.Category
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -11,7 +12,7 @@ import com.food.common.model.RandomUIModel
 import com.food.foodworld.databinding.ItemCategoryDetailBinding
 
 class CategoryAdapter() :
-    ListAdapter<RandomUIModel, CategoryAdapter.CategoryViewHolder>(DiffCallback) {
+    PagingDataAdapter<RandomUIModel, CategoryAdapter.CategoryViewHolder>(DiffCallback) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
@@ -21,7 +22,7 @@ class CategoryAdapter() :
     }
 
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        getItem(position)?.let { holder.bind(it) }
     }
 
     inner class CategoryViewHolder(private var binding: ItemCategoryDetailBinding) :
