@@ -1,9 +1,7 @@
 package com.food.foodworld.ui.home
 
-import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.NavDirections
 import com.food.common.Resource
 import com.food.common.model.RandomUIModel
 import com.food.domain.model.Menu

@@ -1,15 +1,22 @@
 package com.food.foodworld.ui.Category
 
 
+import android.graphics.PorterDuff
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.food.common.model.RandomUIModel
-import com.food.foodworld.databinding.ItemCategoryDetailBinding
+import com.food.foodworld.R
+import com.food.foodworld.databinding.ItemMenuBinding
+import com.food.foodworld.utility.ColorText
+import com.food.foodworld.utility.setColor
 
 class CategoryAdapter() :
     PagingDataAdapter<RandomUIModel, CategoryAdapter.CategoryViewHolder>(DiffCallback) {
@@ -17,7 +24,7 @@ class CategoryAdapter() :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
         val binding =
-            ItemCategoryDetailBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemMenuBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return CategoryViewHolder(binding)
     }
 
@@ -25,11 +32,36 @@ class CategoryAdapter() :
         getItem(position)?.let { holder.bind(it) }
     }
 
-    inner class CategoryViewHolder(private var binding: ItemCategoryDetailBinding) :
+    inner class CategoryViewHolder(private var binding: ItemMenuBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: RandomUIModel) {
             Glide.with(binding.root).load(item.image).into(binding.ivRecipe)
+            binding.tvNameRecipe.text = item.title
+            when (item.healthScore) {
+                in 1..24 -> binding.ratingBar.rating = 1f
+                in 25..39 -> binding.ratingBar.rating = 1.5f
+                in 40..44 -> binding.ratingBar.rating = 2f
+                in 45..59 -> binding.ratingBar.rating = 2.5f
+                in 60..64 -> binding.ratingBar.rating = 3f
+                in 65..79 -> binding.ratingBar.rating = 3.5f
+                in 80..84 -> binding.ratingBar.rating = 4f
+                in 85..92 -> binding.ratingBar.rating = 4.5f
+                else -> binding.ratingBar.rating = 5f
+
+            }
+            if (item.vegan){
+                binding.veganIcon.setColor(R.color.green)
+                binding.tvVegan.ColorText(R.color.green)
+            }else{
+                binding.veganIcon.setColor(R.color.gray400)
+                binding.tvVegan.ColorText(R.color.gray400)
+
+            }
+            binding.clockIcon.setColor(R.color.orange)
+            binding.tvClock.text = item.readyInMinutes.toString()
+            binding.tvClock.ColorText(R.color.black)
+
         }
     }
 
@@ -43,4 +75,5 @@ class CategoryAdapter() :
         override fun areContentsTheSame(oldItem: RandomUIModel, newItem: RandomUIModel) =
             oldItem == newItem
     }
+
 }

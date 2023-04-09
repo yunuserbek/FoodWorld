@@ -2,6 +2,7 @@ package com.food.foodworld.ui.Category
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -31,11 +32,24 @@ class CategoryFragment : Fragment(R.layout.fragment_category) {
     }
 
     private fun collectData() = viewLifecycleOwner.lifecycleScope.launch {
-        viewModel.category.collect { response ->
 
+        viewModel.category.collect { response ->
+            when(response) {
+                is CategoryUiState.Error -> {
+                    binding.animLoading.gone()
+
+                }
+                is CategoryUiState.Loading -> {
+                    binding.animLoading.visible()
+                }
+                is CategoryUiState.Success -> {
                     binding.animLoading.gone()
                     binding.rv.adapter = categoryAdapter
-                    categoryAdapter.submitData(response)
+                    categoryAdapter.submitData(response.data)
+                }
+            }
+
+
 
 
 

@@ -9,6 +9,8 @@ fun List<Recipe>.RandomUIModelMap() = map {
         id = it.id?:0,
         image = it.image?:"",
         title = it.title?:"",
-        healthScore = it.healthScore ?: 0
+        healthScore = it.healthScore ?: 0,
+        vegan = it.vegan ?: false,
+        readyInMinutes = it.readyInMinutes ?: 0
     )
 }

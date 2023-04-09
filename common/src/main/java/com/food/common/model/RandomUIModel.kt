@@ -4,4 +4,6 @@ data class RandomUIModel (
     val id: Int,
     val image: String?,
     val title: String,
-    val healthScore: Int )
+    val healthScore: Int,
+    val vegan:Boolean,
+    val readyInMinutes:Int)

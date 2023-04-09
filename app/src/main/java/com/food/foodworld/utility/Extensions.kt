@@ -1,10 +1,13 @@
 package com.food.foodworld.utility
 
 import android.content.Context
+import android.graphics.PorterDuff
 import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -34,6 +37,13 @@ fun View.gone() {
 
 fun View.visible() {
     visibility = View.VISIBLE
+}
+//imageview render color
+fun ImageView.setColor(colorResId: Int) {
+    setColorFilter(ContextCompat.getColor(context, colorResId), PorterDuff.Mode.SRC_IN)
+}
+fun TextView.ColorText(colorResId: Int) {
+    setTextColor(ContextCompat.getColor(context, colorResId))
 }
 
 
