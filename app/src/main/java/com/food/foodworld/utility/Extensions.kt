@@ -16,7 +16,7 @@ import com.food.foodworld.R
 fun ImageView.glideImage(url: String?) {
     Glide.with(this.rootView.context).load(url)
         .diskCacheStrategy(DiskCacheStrategy.DATA)
-        .placeholder(this.context.circularProgressDrawable()).error(R.drawable.exclamation).into(this)
+        .placeholder(this.context.circularProgressDrawable()).error(R.drawable.error).into(this)
 
 
 }
@@ -45,5 +45,6 @@ fun ImageView.setColor(colorResId: Int) {
 fun TextView.ColorText(colorResId: Int) {
     setTextColor(ContextCompat.getColor(context, colorResId))
 }
+
 
 

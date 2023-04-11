@@ -32,4 +32,14 @@
             android:name="categoryName"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.food.foodworld.ui.favorite.FavoriteFragment"
+        android:label="fragment_favorite"
+        tools:layout="@layout/fragment_favorite" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.food.foodworld.ui.search.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" />
 </navigation>

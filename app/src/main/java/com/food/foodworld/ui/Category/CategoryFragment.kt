@@ -6,12 +6,14 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.food.common.Resource
 import com.food.foodworld.R
 import com.food.foodworld.databinding.FragmentCategoryBinding
 import com.food.foodworld.utility.delegation.viewBinding
 import com.food.foodworld.utility.gone
+import com.food.foodworld.utility.titleCaseFirstChar
 import com.food.foodworld.utility.visible
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -29,6 +31,8 @@ class CategoryFragment : Fragment(R.layout.fragment_category) {
         val category = args.categoryName
         viewModel.categoryFood(category)
         collectData()
+        listener()
+        binding.header.text =args.categoryName.titleCaseFirstChar()
     }
 
     private fun collectData() = viewLifecycleOwner.lifecycleScope.launch {
@@ -43,6 +47,7 @@ class CategoryFragment : Fragment(R.layout.fragment_category) {
                     binding.animLoading.visible()
                 }
                 is CategoryUiState.Success -> {
+
                     binding.animLoading.gone()
                     binding.rv.adapter = categoryAdapter
                     categoryAdapter.submitData(response.data)
@@ -55,6 +60,12 @@ class CategoryFragment : Fragment(R.layout.fragment_category) {
 
 
 
+        }
+    }
+    fun listener(){
+
+        binding.backButton.setOnClickListener {
+            findNavController().popBackStack()
         }
     }
 

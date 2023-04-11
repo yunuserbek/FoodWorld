@@ -1,13 +1,9 @@
 package com.food.foodworld.ui.Category
 
 
-import android.graphics.PorterDuff
-import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
-import androidx.core.content.ContextCompat
-import androidx.core.graphics.drawable.DrawableCompat
+import android.view.animation.AnimationUtils
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -16,6 +12,7 @@ import com.food.common.model.RandomUIModel
 import com.food.foodworld.R
 import com.food.foodworld.databinding.ItemMenuBinding
 import com.food.foodworld.utility.ColorText
+import com.food.foodworld.utility.circularProgressDrawable
 import com.food.foodworld.utility.setColor
 
 class CategoryAdapter() :
@@ -36,6 +33,8 @@ class CategoryAdapter() :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: RandomUIModel) {
+            itemView.animation =
+                AnimationUtils.loadAnimation(itemView.context, R.anim.menu_category_item_scale)
             Glide.with(binding.root).load(item.image).into(binding.ivRecipe)
             binding.tvNameRecipe.text = item.title
             when (item.healthScore) {
