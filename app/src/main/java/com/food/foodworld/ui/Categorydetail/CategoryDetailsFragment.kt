@@ -16,6 +16,7 @@ import com.food.foodworld.databinding.FragmentCategoryDetailsBinding
 import com.food.foodworld.utility.glideImage
 import com.food.foodworld.utility.gone
 import com.food.foodworld.utility.visible
+import com.food.foodworld.utility.visibleOrGone
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
@@ -63,9 +64,19 @@ private lateinit var binding: FragmentCategoryDetailsBinding
         binding.foodImage.glideImage(url)
     }
 
-    private fun DetailCategory(item:CategoryDetailUIModel){
-        binding.foodName.text = item.title
+    private fun DetailCategory(item:CategoryDetailUIModel)= with(binding){
         foodImage(item.image)
+        foodName.text = item.title
+        gluten.visibleOrGone(item.glutenFree)
+        vegan.visibleOrGone(item.vegetarian)
+        gluten.visibleOrGone(item.glutenFree)
+        vegan.visibleOrGone(item.vegetarian)
+        lactose.visibleOrGone(item.dairyFree)
+        cheap.visibleOrGone(item.cheap)
+        popularity.visibleOrGone(item.veryPopular)
+        healthy.visibleOrGone(item.veryHealthy)
+
+
 
 
 
