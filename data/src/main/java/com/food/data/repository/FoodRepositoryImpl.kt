@@ -5,8 +5,10 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.food.common.Resource
+import com.food.common.model.CategoryDetailUIModel
 import com.food.common.model.RandomUIModel
 import com.food.data.mapper.RandomUIModelMap
+import com.food.data.mapper.toDetailMapper
 import com.food.domain.repository.FoodRepository
 
 import com.food.domain.source.remote.RemoteDataSource
@@ -51,6 +53,19 @@ class FoodRepositoryImpl @Inject constructor(private val remoteDataSource: Remot
 
 
 
+    }
+
+    override fun getCategoryDetail(id: Int): Flow<Resource<CategoryDetailUIModel>> = flow{
+        emit(Resource.Loading)
+        val response = try {
+            remoteDataSource.getDetail(id)
+        }catch (e:IOException){
+            emit(Resource.Error(e))
+            null
+        }
+        response?.let { data ->
+            emit(Resource.Success(data.toDetailMapper()))
+        }
     }
 
 

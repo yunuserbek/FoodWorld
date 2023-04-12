@@ -6,4 +6,8 @@ object Constants {
     const val BASE_URL = "https://api.spoonacular.com/recipes/"
 
     const val RANDOM = "random"
+
+    const val INFORMATION = "{id}/information"
+    const val STATE_KEY_RECIPE_ID = "recipeId"
+
 }

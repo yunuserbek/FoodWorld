@@ -11,11 +11,12 @@ import com.bumptech.glide.Glide
 import com.food.common.model.RandomUIModel
 import com.food.foodworld.R
 import com.food.foodworld.databinding.ItemMenuBinding
+import com.food.foodworld.utility.ClickedAny
 import com.food.foodworld.utility.ColorText
 import com.food.foodworld.utility.circularProgressDrawable
 import com.food.foodworld.utility.setColor
 
-class CategoryAdapter() :
+class CategoryAdapter(private val menuInterface: ClickedAny) :
     PagingDataAdapter<RandomUIModel, CategoryAdapter.CategoryViewHolder>(DiffCallback) {
 
 
@@ -33,6 +34,9 @@ class CategoryAdapter() :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: RandomUIModel) {
+            binding.root.setOnClickListener {
+                menuInterface.onClickedAny( id = item.id, title = item.title)
+            }
             itemView.animation =
                 AnimationUtils.loadAnimation(itemView.context, R.anim.menu_category_item_scale)
             Glide.with(binding.root).load(item.image).into(binding.ivRecipe)

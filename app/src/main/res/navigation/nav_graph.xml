@@ -31,6 +31,9 @@
         <argument
             android:name="categoryName"
             app:argType="string" />
+        <action
+            android:id="@+id/action_categoryFragment_to_categoryDetailsFragment"
+            app:destination="@id/categoryDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
@@ -42,4 +45,15 @@
         android:name="com.food.foodworld.ui.search.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/categoryDetailsFragment"
+        android:name="com.food.foodworld.ui.Categorydetail.CategoryDetailsFragment"
+        android:label="CategoryDetailsFragment" >
+        <argument
+            android:name="recipeId"
+            app:argType="integer" />
+        <argument
+            android:name="title"
+            app:argType="string" />
+    </fragment>
 </navigation>

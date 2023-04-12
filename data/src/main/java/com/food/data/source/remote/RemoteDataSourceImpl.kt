@@ -1,6 +1,7 @@
 package com.food.data.source.remote
 
 import com.food.common.remote.RandomFood
+import com.food.common.remote.categorydetailresponse.CategoryDetailResponse
 import com.food.domain.source.remote.RemoteDataSource
 import javax.inject.Inject
 
@@ -8,5 +9,6 @@ class RemoteDataSourceImpl @Inject constructor (private val foodServices: FoodSe
     RemoteDataSource {
     override suspend fun getRandomFood(count:Int): RandomFood = foodServices.getRandomFood(count)
     override suspend fun getCategory(number: Int, category: String): RandomFood= foodServices.getCategory(number,category)
+    override suspend fun getDetail(id: Int): CategoryDetailResponse =foodServices.getDetailCategory(id)
 
 }

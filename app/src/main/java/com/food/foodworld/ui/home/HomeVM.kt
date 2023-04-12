@@ -15,9 +15,8 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeVM @Inject constructor(private var randomUseCase: RandomUseCase) : ViewModel() {
     private val _randomFood = MutableStateFlow<Resource<List<RandomUIModel>>>(Resource.Loading)
-
-    //  val randomFood =_randomFood.asStateFlow()
     val randomFood get() = _randomFood
+    //  val randomFood =_randomFood.asStateFlow()
 
 
     fun getRandomFood(count: Int) = viewModelScope.launch {

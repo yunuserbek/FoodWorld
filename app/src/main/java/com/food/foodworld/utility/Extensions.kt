@@ -46,5 +46,12 @@ fun TextView.ColorText(colorResId: Int) {
     setTextColor(ContextCompat.getColor(context, colorResId))
 }
 
+fun View.visibleOrGone(boolean: Boolean) {
+    if (boolean) {
+        this.visible()
+    } else {
+        this.gone()
+    }
+}
 
 
