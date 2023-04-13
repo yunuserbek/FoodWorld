@@ -1,27 +1,24 @@
 package com.food.foodworld.ui.Categorydetail
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
+import com.bahadir.mycookingapp.ui.recipe.ViewPagerAdapter
 import com.food.common.Resource
 import com.food.common.model.CategoryDetailUIModel
-import com.food.domain.usecaseImpl.CategoryDetailUseCase
-import com.food.foodworld.R
 import com.food.foodworld.databinding.FragmentCategoryDetailsBinding
 import com.food.foodworld.utility.glideImage
 import com.food.foodworld.utility.gone
 import com.food.foodworld.utility.visible
 import com.food.foodworld.utility.visibleOrGone
+import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class CategoryDetailsFragment  : Fragment() {
@@ -60,15 +57,24 @@ private lateinit var binding: FragmentCategoryDetailsBinding
         }
 
     }
+
     private fun foodImage(url: String) {
         binding.foodImage.glideImage(url)
     }
 
-    private fun DetailCategory(item:CategoryDetailUIModel)= with(binding){
+    fun initView(recipe: CategoryDetailUIModel) {
+        val tabLayoutName = listOf("Ingredients", "Recipe")
+        binding.viewPager.adapter = ViewPagerAdapter(childFragmentManager,lifecycle,recipe)
+        TabLayoutMediator(binding.tabLayout,binding.viewPager){tab,position->
+            tab.text = tabLayoutName[position]
+        }.attach()
+
+    }
+
+    private fun DetailCategory(item: CategoryDetailUIModel) = with(binding) {
+        initView(item)
         foodImage(item.image)
         foodName.text = item.title
-        gluten.visibleOrGone(item.glutenFree)
-        vegan.visibleOrGone(item.vegetarian)
         gluten.visibleOrGone(item.glutenFree)
         vegan.visibleOrGone(item.vegetarian)
         lactose.visibleOrGone(item.dairyFree)

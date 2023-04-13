@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         val navController: NavController = navHostFragment.navController
         navHostFragment.navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.splashFragment,R.id.categoryFragment -> {
+                R.id.categoryDetailsFragment,R.id.splashFragment,R.id.categoryFragment -> {
                     binding.fifthNavigationView.gone()
                 }
                 else -> {

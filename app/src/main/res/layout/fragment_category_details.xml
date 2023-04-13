@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/account_icon" />
+            tools:src="@drawable/account_icon" />
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/animLoading"
@@ -56,7 +56,7 @@
                 android:fontFamily="@font/poppins_bold"
                 android:maxLines="2"
                 android:padding="10dp"
-                android:text="dish_name"
+                tools:text="name"
                 android:textColor="@color/black"
                 android:textSize="15sp" />
         </LinearLayout>
@@ -80,9 +80,9 @@
             android:layout_height="35dp"
             android:layout_gravity="center"
             android:scaleType="centerCrop"
-            android:src="@drawable/veganf"
+            android:src="@drawable/vegan"
             android:visibility="gone"
-            tools:ignore="ContentDescription" />
+             />
 
 
         <ImageView
@@ -90,11 +90,11 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_gravity="center"
-            android:layout_marginStart="15dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/gluten"
+            android:layout_marginStart="15dp"
+            android:src="@drawable/gluten_free"
             android:visibility="gone"
-            tools:ignore="ContentDescription" />
+             />
 
         <ImageView
             android:id="@+id/lactose"
@@ -103,9 +103,9 @@
             android:layout_gravity="center"
             android:layout_marginStart="15dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/lactose"
+            android:src="@drawable/lactose_free"
             android:visibility="gone"
-            tools:ignore="ContentDescription" />
+             />
 
         <ImageView
             android:id="@+id/cheap"
@@ -114,7 +114,7 @@
             android:layout_gravity="top"
             android:layout_marginStart="15dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/cheap"
+            android:src="@drawable/low_price"
             android:visibility="gone"
             tools:ignore="ContentDescription" />
 
@@ -125,7 +125,7 @@
             android:layout_gravity="center"
             android:layout_marginStart="15dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/popular"
+            android:src="@drawable/popularity"
             android:visibility="gone"
             tools:ignore="ContentDescription" />
 
@@ -137,11 +137,20 @@
             android:layout_gravity="center"
             android:layout_marginStart="15dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/healty"
+            android:src="@drawable/healthy"
             android:visibility="gone"
             tools:ignore="ContentDescription" />
 
     </LinearLayout>
+
+    <View
+        android:id="@+id/viewLine"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewPager" />
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
@@ -150,20 +159,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/linear1"
         app:tabIndicatorColor="@color/black"
-        app:tabSelectedTextColor="@color/gray400"
+        app:tabSelectedTextColor="#2196F3"
         app:tabTextColor="@color/black"
         tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
+
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tabLayout" />
-
-
-
+        app:layout_constraintTop_toTopOf="@id/tabLayout"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

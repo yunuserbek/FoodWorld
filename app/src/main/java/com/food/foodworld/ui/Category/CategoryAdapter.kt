@@ -13,7 +13,6 @@ import com.food.foodworld.R
 import com.food.foodworld.databinding.ItemMenuBinding
 import com.food.foodworld.utility.ClickedAny
 import com.food.foodworld.utility.ColorText
-import com.food.foodworld.utility.circularProgressDrawable
 import com.food.foodworld.utility.setColor
 
 class CategoryAdapter(private val menuInterface: ClickedAny) :

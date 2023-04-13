@@ -18,6 +18,9 @@ fun List<Recipe>.RandomUIModelMap() = map {
         readyInMinutes = it.readyInMinutes ?: 0
     )
 }
+fun String.idToImageUrl(imgType: String): String {
+    return "https://spoonacular.com/recipeImages/$this-556x370.$imgType"
+}
 
 fun CategoryDetailResponse.toDetailMapper()= CategoryDetailUIModel(
     id = id?:0,
@@ -39,4 +42,5 @@ fun CategoryDetailResponse.toDetailMapper()= CategoryDetailUIModel(
 fun ExtendedIngredient.toEx() =IngredientUI(
     id = id?:0,
     original =  original?:"",
+    image = "https://www.themealdb.com/images/ingredients/$image?:"
 )

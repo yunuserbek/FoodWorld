@@ -10,4 +10,7 @@ object Constants {
     const val INFORMATION = "{id}/information"
     const val STATE_KEY_RECIPE_ID = "recipeId"
 
+
+    const val RecipeMade = "recipe"
+
 }

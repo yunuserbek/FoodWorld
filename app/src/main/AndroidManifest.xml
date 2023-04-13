@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodWorld"
         tools:targetApi="31"
-        android:largeHeap="true"
+
 
         >
         <activity
