@@ -8,13 +8,13 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.recyclerview.widget.RecyclerView
 import com.food.common.Resource
-import com.food.domain.model.Menu
 import com.food.foodworld.R
 import com.food.foodworld.databinding.FragmentHomeBinding
-import com.food.foodworld.utility.*
+import com.food.foodworld.utility.ClickedAny
 import com.food.foodworld.utility.delegation.viewBinding
+import com.food.foodworld.utility.gone
+import com.food.foodworld.utility.visible
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -33,7 +33,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) ,ClickedAny{
 
         viewModel.getRandomFood(10)
 
-removeMenu()
+//removeMenu()
         collectData()
         category()
     }

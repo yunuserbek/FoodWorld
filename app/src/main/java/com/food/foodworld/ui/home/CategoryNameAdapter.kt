@@ -12,6 +12,8 @@ import com.food.foodworld.R
 import com.food.foodworld.databinding.ItemCategoriesNameBinding
 import com.food.foodworld.utility.ClickedAny
 import com.food.foodworld.utility.circularProgressDrawable
+import java.util.*
+import kotlin.collections.ArrayList
 
 class CategoryNameAdapter(private val foodList: ArrayList<Menu>, private val menuInterface: ClickedAny) :
     RecyclerView.Adapter<CategoryNameAdapter.NameViewHolder>() {
@@ -26,6 +28,10 @@ class CategoryNameAdapter(private val foodList: ArrayList<Menu>, private val men
     fun removeItem(position: Int){
         foodList.removeAt(position)
         notifyItemRemoved(position)
+    }
+    fun moveItem(initial:Int,taget:Int){
+        Collections.swap(foodList,initial,taget)
+        notifyItemMoved(initial,taget)
     }
     fun getSimpleCallback():SimpleCallback{
         return SimpleCallback()
@@ -54,18 +60,19 @@ class CategoryNameAdapter(private val foodList: ArrayList<Menu>, private val men
 
     }
     inner class SimpleCallback : ItemTouchHelper.SimpleCallback(
-        0, ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT
+        ItemTouchHelper.DOWN or ItemTouchHelper.UP or ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT, ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT
     ) {
         override fun onMove(
             recyclerView: RecyclerView,
             viewHolder: RecyclerView.ViewHolder,
             target: RecyclerView.ViewHolder
         ): Boolean {
-            TODO("Not yet implemented")
+            moveItem(viewHolder.bindingAdapterPosition,target.bindingAdapterPosition)
+           return true
         }
 
         override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-            val position =viewHolder.adapterPosition
+            val position =viewHolder.bindingAdapterPosition
             removeItem(position)
         }
     }
