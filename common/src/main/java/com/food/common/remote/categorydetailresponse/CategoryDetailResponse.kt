@@ -1,13 +1,15 @@
 package com.food.common.remote.categorydetailresponse
 
 
+import com.food.common.remote.AnalyzedInstruction
 import com.google.gson.annotations.SerializedName
 
 data class CategoryDetailResponse(
     @SerializedName("aggregateLikes")
     val aggregateLikes: Int?,
+
     @SerializedName("analyzedInstructions")
-    val analyzedInstructions: List<Any?>?,
+    val analyzedInstructions: List<AnalyzedInstruction>,
     @SerializedName("cheap")
     val cheap: Boolean?,
     @SerializedName("cookingMinutes")

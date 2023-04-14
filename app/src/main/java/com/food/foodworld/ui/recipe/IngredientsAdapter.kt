@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.food.common.model.IngredientUI
-import com.food.data.mapper.idToImageUrl
+
 import com.food.foodworld.databinding.ItemIcBinding
 class IngredientsAdapter() :ListAdapter<IngredientUI, IngredientsAdapter.IngViewHolder>(DiffCallback) {
 
@@ -25,7 +25,7 @@ class IngredientsAdapter() :ListAdapter<IngredientUI, IngredientsAdapter.IngView
 
   inner class IngViewHolder(private val binding: ItemIcBinding) : RecyclerView.ViewHolder(binding.root){
       fun bind(item: IngredientUI) {
-     Glide.with(binding.imgComponent).load(item.image).into(binding.imgComponent)
+     Glide.with(binding.imgComponent).load(item.image).centerCrop().into(binding.imgComponent)
           binding.tvComponentName.text = item.original
 
 

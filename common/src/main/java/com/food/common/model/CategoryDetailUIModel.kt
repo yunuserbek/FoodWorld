@@ -1,7 +1,7 @@
 package com.food.common.model
 
 import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data  class CategoryDetailUIModel (
@@ -16,11 +16,10 @@ data  class CategoryDetailUIModel (
     val veryPopular: Boolean,
     val cheap: Boolean,
     val extendedIngredients: List<IngredientUI>,
-   // val step: List<StepUI>? = null,
     val healthScore: Int,
     val image: String,
     val sourceUrl: String,
     val instructions: String? = null,
+    val step: List<StepUI>? = null,
 
-
-        ):Parcelable
+    ):Parcelable

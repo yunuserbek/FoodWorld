@@ -15,6 +15,8 @@ import com.food.foodworld.databinding.FragmentRecipeMadeBinding
 class RecipeMadeFragment : Fragment() {
     private var recipe :CategoryDetailUIModel ?=null
     private lateinit var binding: FragmentRecipeMadeBinding
+    private val madeAdapter by lazy { RecipeMadeAdapter() }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,7 +29,9 @@ class RecipeMadeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         recipe = arguments?.getParcelable(RecipeMade)
-        Toast.makeText(requireContext(), recipe?.title, Toast.LENGTH_SHORT).show()
+
+        binding.rvRecipeMAde.adapter = madeAdapter
+        recipe?.step?.let { madeAdapter.updateList(it) }
 
     }
 

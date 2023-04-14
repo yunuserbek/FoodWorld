@@ -13,7 +13,8 @@ import com.food.foodworld.ui.recipe.RecipeMadeFragment
 class ViewPagerAdapter(
     fragmentManager: FragmentManager,
     lifecycle: Lifecycle,
-    private val recipe: CategoryDetailUIModel
+    private val recipe: CategoryDetailUIModel,
+
 ) : FragmentStateAdapter(fragmentManager, lifecycle) {
     override fun getItemCount(): Int {
         return 2
@@ -21,9 +22,11 @@ class ViewPagerAdapter(
 
     override fun createFragment(position: Int): Fragment {
         when (position) {
-            0 -> return RecipeMadeFragment.newInstance(recipe)
+            0 -> return IngredientsFragment.newInstance(recipe)
+            1-> return RecipeMadeFragment.newInstance(recipe)
         }
-        return IngredientsFragment.newInstance(recipe)
+        return  RecipeMadeFragment.newInstance(recipe)
+
     }
 }
 

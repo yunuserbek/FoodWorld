@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
 import com.food.domain.usecase.CategoryUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -17,6 +18,7 @@ class CategoryVM @Inject constructor(private val categoryUseCase: CategoryUseCas
 
     fun categoryFood(category:String) =viewModelScope.launch {
             categoryUseCase(20,category).cachedIn(viewModelScope).collect {
+                delay(3000)
                 _category.value = CategoryUiState.Loading
                 _category.value =CategoryUiState.Success(it)
 

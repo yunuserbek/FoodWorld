@@ -1,8 +1,11 @@
 package com.food.common.remote
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Equipment(
     @SerializedName("id")
     val id: Int?,
@@ -12,4 +15,4 @@ data class Equipment(
     val localizedName: String?,
     @SerializedName("name")
     val name: String?
-)
+):Parcelable

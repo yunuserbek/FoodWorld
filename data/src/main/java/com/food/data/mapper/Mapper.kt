@@ -3,7 +3,10 @@ package com.food.data.mapper
 import com.food.common.model.CategoryDetailUIModel
 import com.food.common.model.IngredientUI
 import com.food.common.model.RandomUIModel
+import com.food.common.model.StepUI
+import com.food.common.remote.AnalyzedInstruction
 import com.food.common.remote.Recipe
+import com.food.common.remote.Step
 import com.food.common.remote.categorydetailresponse.CategoryDetailResponse
 import com.food.common.remote.categorydetailresponse.ExtendedIngredient
 
@@ -15,12 +18,20 @@ fun List<Recipe>.RandomUIModelMap() = map {
         title = it.title?:"",
         healthScore = it.healthScore ?: 0,
         vegan = it.vegan ?: false,
-        readyInMinutes = it.readyInMinutes ?: 0
+        readyInMinutes = it.readyInMinutes ?: 0,
+
+
+
+
+
     )
 }
-fun String.idToImageUrl(imgType: String): String {
-    return "https://spoonacular.com/recipeImages/$this-556x370.$imgType"
+fun List<Step>.toStep() = map{
+    StepUI(
+        step = it.step?:""
+    )
 }
+
 
 fun CategoryDetailResponse.toDetailMapper()= CategoryDetailUIModel(
     id = id?:0,
@@ -36,11 +47,22 @@ fun CategoryDetailResponse.toDetailMapper()= CategoryDetailUIModel(
     image = image?:"",
     sourceUrl = sourceUrl?:"",
     instructions = instructions?:"",
-    extendedIngredients = extendedIngredients!!.map { it!!.toEx() }
+    extendedIngredients = extendedIngredients!!.map { it!!.toEx() },
+    step = analyzedInstructions.emptyControl()
 
 )
 fun ExtendedIngredient.toEx() =IngredientUI(
     id = id?:0,
     original =  original?:"",
-    image = "https://www.themealdb.com/images/ingredients/$image?:"
+    image = "https://www.themealdb.com/images/ingredients/${name}-small.png",
+    name =name?:""
+
 )
+fun List<AnalyzedInstruction>.emptyControl(): List<StepUI> {
+    return if (this.isNotEmpty()) {
+        this[0].steps.toStep()
+    } else {
+        emptyList()
+    }
+}
+

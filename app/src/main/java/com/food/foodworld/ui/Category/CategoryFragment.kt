@@ -45,6 +45,7 @@ class CategoryFragment : Fragment(R.layout.fragment_category), ClickedAny {
 
                 }
                 is CategoryUiState.Loading -> {
+
                     binding.animLoading.visible()
                 }
                 is CategoryUiState.Success -> {
