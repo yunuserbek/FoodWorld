@@ -5,5 +5,4 @@ import kotlinx.parcelize.Parcelize
 
 
 @Parcelize
-data class StepUI ( val step:String
-):Parcelable
+data class StepUI ( val step:String):Parcelable

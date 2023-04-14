@@ -3,6 +3,7 @@ package com.food.foodworld.ui.home
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -12,7 +13,7 @@ import com.food.foodworld.databinding.ItemCategoriesNameBinding
 import com.food.foodworld.utility.ClickedAny
 import com.food.foodworld.utility.circularProgressDrawable
 
-class CategoryNameAdapter(private val foodList: List<Menu>, private val menuInterface: ClickedAny) :
+class CategoryNameAdapter(private val foodList: ArrayList<Menu>, private val menuInterface: ClickedAny) :
     RecyclerView.Adapter<CategoryNameAdapter.NameViewHolder>() {
 
 
@@ -22,7 +23,13 @@ class CategoryNameAdapter(private val foodList: List<Menu>, private val menuInte
         val binding =ItemCategoriesNameBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return NameViewHolder(binding)
     }
-
+    fun removeItem(position: Int){
+        foodList.removeAt(position)
+        notifyItemRemoved(position)
+    }
+    fun getSimpleCallback():SimpleCallback{
+        return SimpleCallback()
+    }
 
     override fun getItemCount(): Int = foodList.size
 
@@ -46,5 +53,20 @@ class CategoryNameAdapter(private val foodList: List<Menu>, private val menuInte
             }
 
     }
+    inner class SimpleCallback : ItemTouchHelper.SimpleCallback(
+        0, ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT
+    ) {
+        override fun onMove(
+            recyclerView: RecyclerView,
+            viewHolder: RecyclerView.ViewHolder,
+            target: RecyclerView.ViewHolder
+        ): Boolean {
+            TODO("Not yet implemented")
+        }
 
+        override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+            val position =viewHolder.adapterPosition
+            removeItem(position)
+        }
+    }
 }

@@ -7,7 +7,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.food.common.Resource
+import com.food.domain.model.Menu
 import com.food.foodworld.R
 import com.food.foodworld.databinding.FragmentHomeBinding
 import com.food.foodworld.utility.*
@@ -22,13 +25,15 @@ class HomeFragment : Fragment(R.layout.fragment_home) ,ClickedAny{
     private val viewModel: HomeVM by viewModels()
 
     private val randomAdapter by lazy { RandomAdapter() }
-    lateinit var categoryNameAdapter: CategoryNameAdapter
+    private val categoryNameAdapter by lazy { CategoryNameAdapter(viewModel.getMenu(),this) }
+  //  lateinit var categoryNameAdapter: CategoryNameAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         viewModel.getRandomFood(10)
 
-
+removeMenu()
         collectData()
         category()
     }
@@ -57,8 +62,11 @@ class HomeFragment : Fragment(R.layout.fragment_home) ,ClickedAny{
         }
     }
     private fun category(){
-      categoryNameAdapter = CategoryNameAdapter(viewModel.getMenu(),this)
         binding.recyclerMenu.adapter =categoryNameAdapter
+    }
+    fun removeMenu(){
+        val itemTouchHelper =ItemTouchHelper(categoryNameAdapter.getSimpleCallback())
+        itemTouchHelper.attachToRecyclerView(binding.recyclerMenu)
     }
 
     override fun onClickedAny(id: Int?, title: String?) {

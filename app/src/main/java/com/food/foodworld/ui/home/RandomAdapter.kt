@@ -2,6 +2,7 @@ package com.food.foodworld.ui.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.food.common.model.RandomUIModel
 import com.food.foodworld.R
@@ -18,6 +19,7 @@ class RandomAdapter : RecyclerView.Adapter<RandomAdapter.RandomViewHolder>() {
         val binding = ItemHomeRandomBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return RandomViewHolder(binding)
     }
+
 
     override fun getItemCount(): Int = itemlist.size
 
@@ -39,4 +41,5 @@ class RandomAdapter : RecyclerView.Adapter<RandomAdapter.RandomViewHolder>() {
         this.itemlist.addAll(updateList)
         notifyItemRangeInserted(0, updateList.size)
     }
+
 }

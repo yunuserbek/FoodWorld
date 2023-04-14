@@ -4,7 +4,7 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data  class CategoryDetailUIModel (
+data  class CategoryDetailUIModel(
 
     val id: Int,
     val title: String,
@@ -20,6 +20,6 @@ data  class CategoryDetailUIModel (
     val image: String,
     val sourceUrl: String,
     val instructions: String? = null,
-    val step: List<StepUI>? = null,
+    val step: List<StepUI> = emptyList(),
 
     ):Parcelable

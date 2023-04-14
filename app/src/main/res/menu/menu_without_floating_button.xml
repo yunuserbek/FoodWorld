@@ -10,22 +10,23 @@
 
     <item
         android:id="@+id/searchFragment"
-        android:icon="@drawable/favorite_icon"
+        android:icon="@drawable/search"
         android:title="Search"
         app:showAsAction="ifRoom"
+
         />
 
     <item
         android:id="@+id/foodFragment"
-        android:icon="@drawable/home_icon"
+        android:icon="@drawable/cooking"
         android:title="Home"
         app:showAsAction="ifRoom"
         />
 
     <item
         android:id="@+id/favoriteFragment"
-        android:icon="@drawable/account_icon"
-        android:title="Account"
+        android:icon="@drawable/favorite"
+        android:title="Favorite"
         app:showAsAction="ifRoom"
         />
 </menu>

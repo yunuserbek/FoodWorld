@@ -27,16 +27,28 @@ class HomeVM @Inject constructor(private var randomUseCase: RandomUseCase) : Vie
     }
 
 
-    fun getMenu(): List<Menu> {
-        return listOf(
-Menu(1, R.drawable.breakfast, "breakfast",-1),
-Menu(2, R.drawable.aparatif, "appetizer",-1),
-Menu(3, R.drawable.soup, "soup",-1),
-Menu(4, R.drawable.maincourse, "main course",-1),
-Menu(5, R.drawable.saladd, "salad",-1),
-Menu(6, R.drawable.bread, "bread",-1),
-Menu(7, R.drawable.drink, "drink",-1),
-Menu(8, R.drawable.sweet, "sweet",-1),
+//    fun getMenu(): List<Menu> {
+//        return listOf(
+//Menu(1, R.drawable.breakfast, "breakfast",-1),
+//Menu(2, R.drawable.aparatif, "appetizer",-1),
+//Menu(3, R.drawable.soup, "soup",-1),
+//Menu(4, R.drawable.maincourse, "main course",-1),
+//Menu(5, R.drawable.saladd, "salad",-1),
+//Menu(6, R.drawable.bread, "bread",-1),
+//Menu(7, R.drawable.drink, "drink",-1),
+//Menu(8, R.drawable.sweet, "sweet",-1),
+//        )
+//    }
+    fun getMenu(): ArrayList<Menu> {
+        return arrayListOf(
+            Menu(1, R.drawable.breakfast, "breakfast", -1),
+            Menu(2, R.drawable.aparatif, "appetizer", -1),
+            Menu(3, R.drawable.soup, "soup", -1),
+            Menu(4, R.drawable.maincourse, "main course", -1),
+            Menu(5, R.drawable.saladd, "salad", -1),
+            Menu(6, R.drawable.bread, "bread", -1),
+            Menu(7, R.drawable.drink, "drink", -1),
+            Menu(8, R.drawable.sweet, "sweet", -1)
         )
     }
 }
