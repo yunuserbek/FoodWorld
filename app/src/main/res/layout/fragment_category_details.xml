@@ -59,6 +59,14 @@
                 tools:text="name"
                 android:textColor="@color/black"
                 android:textSize="15sp" />
+
+            <ImageView
+                android:id="@+id/favorite"
+                android:layout_width="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="30dp"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/star_on" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
     <LinearLayout

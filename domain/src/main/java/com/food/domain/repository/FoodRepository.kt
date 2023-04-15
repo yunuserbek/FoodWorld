@@ -12,4 +12,6 @@ fun getFoodByCategory(number:Int,category:String):Flow<PagingData<RandomUIModel>
 
 fun getCategoryDetail(id:Int):Flow<Resource<CategoryDetailUIModel>>
 
+suspend fun addRecipe(recipe: CategoryDetailUIModel)
+
 }

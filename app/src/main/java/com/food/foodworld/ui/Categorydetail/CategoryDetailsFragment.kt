@@ -11,6 +11,7 @@ import androidx.navigation.fragment.navArgs
 import com.bahadir.mycookingapp.ui.recipe.ViewPagerAdapter
 import com.food.common.Resource
 import com.food.common.model.CategoryDetailUIModel
+import com.food.foodworld.R
 import com.food.foodworld.databinding.FragmentCategoryDetailsBinding
 import com.food.foodworld.utility.glideImage
 import com.food.foodworld.utility.gone
@@ -24,6 +25,7 @@ import kotlinx.coroutines.launch
 class CategoryDetailsFragment  : Fragment() {
     private val viewModel: CategoryDetailVM by viewModels()
     private val args: CategoryDetailsFragmentArgs by navArgs()
+    private var isTheRecipeSaved: Boolean = false
 
 private lateinit var binding: FragmentCategoryDetailsBinding
     override fun onCreateView(
@@ -50,8 +52,26 @@ private lateinit var binding: FragmentCategoryDetailsBinding
                     binding.animLoading.gone()
                     DetailCategory(it.data)
                 }
+
                 else -> {
                     binding.animLoading.gone()
+                }
+            }
+        }
+
+    }
+
+    private fun initUI(recipe:CategoryDetailUIModel) {
+        binding.favorite.setOnClickListener {
+            isTheRecipeSaved = when (isTheRecipeSaved) {
+                true -> {
+                    binding.favorite.setImageResource(R.drawable.star_off)
+                    false
+                }
+                false -> {
+                    viewModel.addRecipe(recipe)
+                    binding.favorite.setImageResource(R.drawable.star_on)
+                    true
                 }
             }
         }
@@ -64,8 +84,8 @@ private lateinit var binding: FragmentCategoryDetailsBinding
 
     fun initView(recipe: CategoryDetailUIModel) {
         val tabLayoutName = listOf("Ingredients", "Recipe")
-        binding.viewPager.adapter = ViewPagerAdapter(childFragmentManager,lifecycle,recipe)
-        TabLayoutMediator(binding.tabLayout,binding.viewPager){tab,position->
+        binding.viewPager.adapter = ViewPagerAdapter(childFragmentManager, lifecycle, recipe)
+        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             tab.text = tabLayoutName[position]
         }.attach()
 
@@ -73,6 +93,7 @@ private lateinit var binding: FragmentCategoryDetailsBinding
 
     private fun DetailCategory(item: CategoryDetailUIModel) = with(binding) {
         initView(item)
+        initUI(item)
         foodImage(item.image)
         foodName.text = item.title
         gluten.visibleOrGone(item.glutenFree)

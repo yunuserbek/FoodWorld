@@ -44,11 +44,12 @@ fun CategoryDetailResponse.toDetailMapper()= CategoryDetailUIModel(
     veryPopular = veryPopular?:false,
     cheap = cheap?:false,
     healthScore = healthScore?:0,
-    image = image?:"",
-    sourceUrl = sourceUrl?:"",
-    instructions = instructions?:"",
+    image = image.orEmpty(),
+    sourceUrl = sourceUrl.orEmpty(),
+    instructions = instructions.orEmpty(),
     extendedIngredients = extendedIngredients!!.map { it!!.toEx() },
-    step = analyzedInstructions.emptyControl()
+    step = analyzedInstructions[0].steps.toStep(),
+    imageFilePath = ""
 
 )
 fun ExtendedIngredient.toEx() =IngredientUI(

@@ -1,7 +1,9 @@
 package com.food.domain.di
 
+import com.food.domain.usecase.AddRecipeUseCaseInt
 import com.food.domain.usecase.CategoryDetailUseCaseInt
 import com.food.domain.usecase.CategoryUseCase
+import com.food.domain.usecaseImpl.AddRecipeUseCase
 import com.food.domain.usecaseImpl.CategoryDetailUseCase
 import com.food.domain.usecaseImpl.CategoryRandomUseCase
 import dagger.Binds
@@ -22,4 +24,8 @@ abstract class CategoryUseModule {
     @Binds
     @Singleton
     abstract fun bindCategoryDetailUseCase(useCase: CategoryDetailUseCase): CategoryDetailUseCaseInt
+
+    @Binds
+    @Singleton
+    abstract fun bindAddRecipeUseCase(useCase: AddRecipeUseCase): AddRecipeUseCaseInt
 }

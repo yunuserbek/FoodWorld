@@ -1,10 +1,14 @@
 package com.food.common.model
 
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
+@Entity(tableName = "category_detail")
 data  class CategoryDetailUIModel(
+@PrimaryKey(autoGenerate = false)
 
     val id: Int,
     val title: String,
@@ -21,5 +25,6 @@ data  class CategoryDetailUIModel(
     val sourceUrl: String,
     val instructions: String? = null,
     val step: List<StepUI> = emptyList(),
+var imageFilePath: String?
 
     ):Parcelable

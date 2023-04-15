@@ -9,6 +9,7 @@ import com.food.common.model.CategoryDetailUIModel
 import com.food.common.model.RandomUIModel
 import com.food.data.mapper.RandomUIModelMap
 import com.food.data.mapper.toDetailMapper
+import com.food.domain.local.LocalDataSource
 import com.food.domain.repository.FoodRepository
 
 import com.food.domain.source.remote.RemoteDataSource
@@ -19,7 +20,11 @@ import kotlinx.coroutines.flow.flow
 import java.io.IOException
 import javax.inject.Inject
 
-class FoodRepositoryImpl @Inject constructor(private val remoteDataSource: RemoteDataSource) :
+class FoodRepositoryImpl @Inject constructor(
+
+    private val remoteDataSource: RemoteDataSource,
+    private val localDataSource: LocalDataSource
+    ) :
     FoodRepository {
     override fun getFood(count:Int): Flow<Resource<List<RandomUIModel>>> = flow {
         emit(Resource.Loading)
@@ -66,6 +71,10 @@ class FoodRepositoryImpl @Inject constructor(private val remoteDataSource: Remot
         response?.let { data ->
             emit(Resource.Success(data.toDetailMapper()))
         }
+    }
+
+    override suspend fun addRecipe(recipe: CategoryDetailUIModel) {
+        localDataSource.addRecipe(recipe)
     }
 
 
