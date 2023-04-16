@@ -1,7 +1,11 @@
 package com.food.domain.di
 
+import com.food.domain.usecase.FoodFavoriteUseCaseInt
+import com.food.domain.usecase.IsRecipeSavedUseCaseInt
 import com.food.domain.usecaseImpl.RandomFoodUseCase
 import com.food.domain.usecase.RandomUseCase
+import com.food.domain.usecaseImpl.FoodFavoriteUseCase
+import com.food.domain.usecaseImpl.IsRecipeSavedUse
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -15,6 +19,17 @@ abstract class UseCaseModule {
 
     @Binds
     @Singleton
-    abstract fun bindRandomUseCase(useCase: RandomFoodUseCase): RandomUseCase}
+    abstract fun bindRandomUseCase(useCase: RandomFoodUseCase): RandomUseCase
+
+    @Binds
+    @Singleton
+    abstract fun bindIsRecipeSavedUseCase(useCase: IsRecipeSavedUse): IsRecipeSavedUseCaseInt
+
+    @Binds
+    @Singleton
+    abstract fun bindFoodFavoriteUseCase(useCase: FoodFavoriteUseCase): FoodFavoriteUseCaseInt
+}
+
+
 
 

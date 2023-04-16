@@ -9,6 +9,7 @@ import com.food.common.model.CategoryDetailUIModel
 import com.food.data.common.Constants.STATE_KEY_RECIPE_ID
 import com.food.domain.usecaseImpl.AddRecipeUseCase
 import com.food.domain.usecaseImpl.CategoryDetailUseCase
+import com.food.domain.usecaseImpl.IsRecipeSavedUse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -19,10 +20,14 @@ class CategoryDetailVM @Inject constructor(
 
     private val categoryDetailUseCase: CategoryDetailUseCase,
     private val addRecipeUseCase: AddRecipeUseCase,
+    private val isRecipeSavedUse: IsRecipeSavedUse,
+
     savedStateHandle: SavedStateHandle
+
 ) :
     ViewModel() {
-
+    private val _isSavedRecipe = MutableStateFlow<Resource<Boolean>>(Resource.Loading)
+    val isSavedRecipe=_isSavedRecipe.asStateFlow()
     init {
         savedStateHandle.get<Int>(STATE_KEY_RECIPE_ID)?.let {
             getDetail(it)
@@ -41,5 +46,11 @@ class CategoryDetailVM @Inject constructor(
     }
     fun addRecipe(recipe:CategoryDetailUIModel)=viewModelScope.launch {
         addRecipeUseCase.invoke(recipe)
+    }
+    fun isRecipeSaved(recipeId: Int) = viewModelScope.launch {
+        isRecipeSavedUse.invoke(recipeId).collect{
+            _isSavedRecipe.emit(it)
+
+        }
     }
 }

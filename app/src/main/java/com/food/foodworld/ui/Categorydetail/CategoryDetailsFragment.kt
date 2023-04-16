@@ -19,6 +19,8 @@ import com.food.foodworld.utility.visible
 import com.food.foodworld.utility.visibleOrGone
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -26,6 +28,8 @@ class CategoryDetailsFragment  : Fragment() {
     private val viewModel: CategoryDetailVM by viewModels()
     private val args: CategoryDetailsFragmentArgs by navArgs()
     private var isTheRecipeSaved: Boolean = false
+
+
 
 private lateinit var binding: FragmentCategoryDetailsBinding
     override fun onCreateView(

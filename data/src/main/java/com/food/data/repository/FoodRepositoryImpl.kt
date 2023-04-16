@@ -77,5 +77,32 @@ class FoodRepositoryImpl @Inject constructor(
         localDataSource.addRecipe(recipe)
     }
 
+    override fun isRecipeSaved(recipeId: Int): Flow<Resource<Boolean>> = flow {
+        emit(Resource.Loading)
+        val response = try {
+            localDataSource.isRecipeSaved(recipeId)
+        } catch (e: IOException) {
+            emit(Resource.Error(e))
+            null
+        }
+        response?.let {
+            emit(Resource.Success(true))
+        } ?: kotlin.run { emit(Resource.Success(false)) }
+    }
 
-}
+    override  fun getFavoriteRecipes(): Flow<Resource<List<CategoryDetailUIModel>>> = flow {
+        emit(Resource.Loading)
+    val response =try {
+        localDataSource.getFavoriteRecipes()
+    }catch (e:IOException){
+        emit(Resource.Error(e))
+        null
+    }
+        response?.let {
+            emit(Resource.Success(it))
+        }
+    }
+
+    }
+
+
