@@ -60,7 +60,7 @@ class CategoryNameAdapter(private val foodList: ArrayList<Menu>, private val men
 
     }
     inner class SimpleCallback : ItemTouchHelper.SimpleCallback(
-        ItemTouchHelper.DOWN or ItemTouchHelper.UP or ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT, ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT
+        ItemTouchHelper.DOWN or ItemTouchHelper.UP or ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT, 0
     ) {
         override fun onMove(
             recyclerView: RecyclerView,

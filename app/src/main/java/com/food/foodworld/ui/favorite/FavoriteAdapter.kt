@@ -22,7 +22,7 @@ class FavoriteAdapter() :
                 itemView.animation =
                     AnimationUtils.loadAnimation(
                         itemView.context,
-                        R.anim.zoom_in
+                        R.anim.favorite_item
                     )
                 foodImage.glideImage(item.image)
                 recipeText.text = item.instructions

@@ -33,7 +33,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) ,ClickedAny{
 
         viewModel.getRandomFood(10)
 
-//removeMenu()
+removeMenu()
         collectData()
         category()
     }
