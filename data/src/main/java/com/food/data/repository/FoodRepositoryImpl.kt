@@ -103,6 +103,8 @@ class FoodRepositoryImpl @Inject constructor(
         }
     }
 
-    }
+    override suspend fun deleteFavoriteRecipe(recipeId: CategoryDetailUIModel) =localDataSource.deleteRecipeFavorite(recipeId)
+
+}
 
 

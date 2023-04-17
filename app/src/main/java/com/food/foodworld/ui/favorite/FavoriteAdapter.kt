@@ -25,7 +25,7 @@ class FavoriteAdapter() :
                         R.anim.favorite_item
                     )
                 foodImage.glideImage(item.image)
-                recipeText.text = item.instructions
+                recipeText.text = item.title
 
             }
         }

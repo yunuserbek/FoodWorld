@@ -20,4 +20,6 @@ fun isRecipeSaved(recipeId:Int):Flow<Resource<Boolean>>
 
 fun getFavoriteRecipes():Flow<Resource<List<CategoryDetailUIModel>>>
 
+suspend fun deleteFavoriteRecipe(recipeId: CategoryDetailUIModel)
+
 }
