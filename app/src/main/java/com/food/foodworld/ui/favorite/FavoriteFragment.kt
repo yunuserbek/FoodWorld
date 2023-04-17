@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class FavoriteFragment : Fragment() {
-    private val favoriteAdapter by lazy { FavoriteAdapter() }
+    private val favoriteAdapter by lazy { FavoriteAdapter(requireActivity(),viewModel) }
 
 
     private val viewModel: FavoriteVM by viewModels()
@@ -72,5 +72,9 @@ class FavoriteFragment : Fragment() {
         itemTouchHelper.attachToRecyclerView(binding.fovoriteRv)
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
 
+        favoriteAdapter.clearContextualActionMode()
+    }
 }
