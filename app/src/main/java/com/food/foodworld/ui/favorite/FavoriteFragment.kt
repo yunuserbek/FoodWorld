@@ -16,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.food.common.Resource
 import com.food.common.model.CategoryDetailUIModel
 import com.food.foodworld.databinding.FragmentFavoriteBinding
+import com.food.foodworld.utility.gone
+import com.food.foodworld.utility.visible
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -107,10 +109,16 @@ class FavoriteFragment : Fragment() {
                     }
 
                     is Resource.Success -> {
-
-
-                        favoriteAdapter.submitList(response.data)
                         binding.fovoriteRv.adapter = favoriteAdapter
+                        favoriteAdapter.submitList(response.data)
+                        if (response.data.isEmpty()){
+                            binding.floatingActionButton.gone()
+                            binding.tvEmptyRecipe.visible()
+                        }else{
+                            binding.floatingActionButton.visible()
+                            binding.tvEmptyRecipe.gone()
+                        }
+
                     }
 
                     is Resource.Error -> {
