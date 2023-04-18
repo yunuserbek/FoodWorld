@@ -20,6 +20,9 @@ interface FoodDao {
     @Query("SELECT * FROM category_detail")
     suspend fun getFavoriteRecipes(): List<CategoryDetailUIModel>
 
+
+    @Query("DELETE FROM category_detail WHERE id=:recipeId")
+    suspend fun deleteRecipe(recipeId: Int)
     @Delete
     suspend fun deleteRecipeFavorite(recipe:CategoryDetailUIModel)
 

@@ -22,4 +22,6 @@ fun getFavoriteRecipes():Flow<Resource<List<CategoryDetailUIModel>>>
 
 suspend fun deleteFavoriteRecipe(recipeId: CategoryDetailUIModel)
 
+suspend fun deleteRecipe(recipeId:Int)
+
 }

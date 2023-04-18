@@ -12,6 +12,8 @@ interface LocalDataSource {
 
     suspend fun deleteRecipeFavorite(recipe:CategoryDetailUIModel)
 
+    suspend fun deleteRecipe(recipeId:Int)
+
 
 
 

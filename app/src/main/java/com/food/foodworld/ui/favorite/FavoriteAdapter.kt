@@ -1,10 +1,13 @@
 package com.food.foodworld.ui.favorite
 
 
+import android.content.ClipData
+import android.content.ClipDescription
 import android.view.ActionMode
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.core.content.ContextCompat
@@ -40,6 +43,15 @@ class FavoriteAdapter( private val requireActivity: FragmentActivity,    private
                 recipeText.text = item.title
 
                 root.setOnLongClickListener {
+
+                    //drag and drop
+                    val clipdata =item.id.toString()
+                    val items  = ClipData.Item(clipdata)
+                    val mimeType = arrayOf(ClipDescription.MIMETYPE_TEXT_PLAIN)
+                    val data = ClipData(clipdata,mimeType,items)
+                    val dragShadowBuilder = View.DragShadowBuilder(it)
+                    it.startDragAndDrop(data,dragShadowBuilder,it,0)
+
                     if (!multiSelection) {
                         multiSelection = true
                         requireActivity.startActionMode(this@FavoriteAdapter)
@@ -49,6 +61,7 @@ class FavoriteAdapter( private val requireActivity: FragmentActivity,    private
                         applySelection(binding, item)
                         true
                     }
+                    true
                 }
             }
         }
@@ -71,7 +84,7 @@ class FavoriteAdapter( private val requireActivity: FragmentActivity,    private
         if (selectedRecipes.contains(currentRecipe)) {
             changeRecipeStyle(holder, R.color.gray400, R.color.purple_500)
         } else {
-            changeRecipeStyle(holder, R.color.green, R.color.colorPrimaryDark)
+            changeRecipeStyle(holder, R.color.white, R.color.colorPrimaryDark)
         }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -106,7 +119,7 @@ class FavoriteAdapter( private val requireActivity: FragmentActivity,    private
             applyActionModeTitle()
         } else {
             selectedRecipes.add(currentRecipe)
-            changeRecipeStyle(holder, R.color.colorPrimaryDark, R.color.purple_500)
+            changeRecipeStyle(holder, R.color.white, R.color.purple_500)
             applyActionModeTitle()
         }
     }
@@ -142,6 +155,7 @@ class FavoriteAdapter( private val requireActivity: FragmentActivity,    private
     }
 
     override fun onDestroyActionMode(mode: ActionMode?) {
+
         multiSelection = false
         selectedRecipes.clear()
         applyStatusBarColor(R.color.white)
