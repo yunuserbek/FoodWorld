@@ -21,6 +21,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -44,6 +45,7 @@ private lateinit var binding: FragmentCategoryDetailsBinding
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         categoryDetail()
+        collectData()
 
     }
     private fun categoryDetail() = viewLifecycleOwner.lifecycleScope.launch {
@@ -65,10 +67,14 @@ private lateinit var binding: FragmentCategoryDetailsBinding
 
     }
 
+
+
     private fun initUI(recipe:CategoryDetailUIModel) {
         binding.favorite.setOnClickListener {
             isTheRecipeSaved = when (isTheRecipeSaved) {
                 true -> {
+
+                    viewModel.deleteID(recipe.id)
                     binding.favorite.setImageResource(R.drawable.star_off)
                     false
                 }
@@ -82,6 +88,25 @@ private lateinit var binding: FragmentCategoryDetailsBinding
 
     }
 
+  fun collectData()= viewLifecycleOwner.lifecycleScope.launch {
+      viewModel.isSavedRecipe.collect{ response ->
+          when (response) {
+              is Resource.Loading -> {}
+              is Resource.Success -> {
+                  if (response.data) {
+                      isTheRecipeSaved = true
+                      binding.favorite.setImageResource(R.drawable.star_on)
+                  } else {
+                      isTheRecipeSaved = false
+                      binding.favorite.setImageResource(R.drawable.star_off)
+                  }
+              }
+              is Resource.Error -> {
+
+              }
+          }
+      }
+  }
     private fun foodImage(url: String) {
         binding.foodImage.glideImage(url)
     }
@@ -106,10 +131,6 @@ private lateinit var binding: FragmentCategoryDetailsBinding
         cheap.visibleOrGone(item.cheap)
         popularity.visibleOrGone(item.veryPopular)
         healthy.visibleOrGone(item.veryHealthy)
-
-
-
-
 
 }
 

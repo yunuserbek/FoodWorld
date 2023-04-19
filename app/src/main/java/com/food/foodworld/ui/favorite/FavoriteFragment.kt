@@ -6,15 +6,13 @@ import android.view.DragEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.food.common.Resource
-import com.food.common.model.CategoryDetailUIModel
 import com.food.foodworld.databinding.FragmentFavoriteBinding
 import com.food.foodworld.utility.gone
 import com.food.foodworld.utility.visible
@@ -44,9 +42,18 @@ class FavoriteFragment : Fragment() {
         viewModel.getFavoriteRecipes()
         collectData()
         itemTouchHelper()
-        binding.floatingActionButton.setOnDragListener(dragListener)
+        binding.tvGarbage.setOnDragListener(dragListener)
+        initUi()
 
 
+    }
+    private fun initUi(){
+        favoriteAdapter.onclick= {id->
+            id?.let {
+                findNavController().navigate(FavoriteFragmentDirections.actionFavoriteFragmentToCategoryDetailsFragment(it,""))
+            }
+
+        }
     }
 
     private val dragListener = View.OnDragListener { view, event ->
@@ -99,6 +106,7 @@ class FavoriteFragment : Fragment() {
     }
 
 
+
     fun collectData() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.getAllRecipe.collect {response->
@@ -112,10 +120,10 @@ class FavoriteFragment : Fragment() {
                         binding.fovoriteRv.adapter = favoriteAdapter
                         favoriteAdapter.submitList(response.data)
                         if (response.data.isEmpty()){
-                            binding.floatingActionButton.gone()
+                            binding.tvGarbage.gone()
                             binding.tvEmptyRecipe.visible()
                         }else{
-                            binding.floatingActionButton.visible()
+                            binding.tvGarbage.visible()
                             binding.tvEmptyRecipe.gone()
                         }
 

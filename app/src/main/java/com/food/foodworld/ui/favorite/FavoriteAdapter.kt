@@ -18,14 +18,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.food.common.model.CategoryDetailUIModel
 import com.food.foodworld.R
 import com.food.foodworld.databinding.ItemFavoriteRecipeBinding
+import com.food.foodworld.utility.ClickedAny
 import com.food.foodworld.utility.glideImage
-import com.google.android.material.snackbar.Snackbar
 
 
-class FavoriteAdapter( private val requireActivity: FragmentActivity,    private val favoriteViewModel: FavoriteVM) :
+class FavoriteAdapter(private val requireActivity: FragmentActivity, private val favoriteViewModel: FavoriteVM) :
     ListAdapter<CategoryDetailUIModel, FavoriteAdapter.ViewHolder>(FavoriteItemCallBack()) , ActionMode.Callback {
     private var multiSelection = false
     private var selectedRecipes = arrayListOf<CategoryDetailUIModel>()
+    var onclick: (Int) -> Unit = {}
 
     private lateinit var mActionMode: ActionMode
     inner class ViewHolder(private val binding: ItemFavoriteRecipeBinding) :
@@ -42,6 +43,9 @@ class FavoriteAdapter( private val requireActivity: FragmentActivity,    private
                 foodImage.glideImage(item.image)
                 recipeText.text = item.title
 
+                root.setOnClickListener {
+                    onclick(item.id)
+                }
                 root.setOnLongClickListener {
 
                     //drag and drop

@@ -9,6 +9,7 @@ import com.food.common.model.CategoryDetailUIModel
 import com.food.data.common.Constants.STATE_KEY_RECIPE_ID
 import com.food.domain.usecaseImpl.AddRecipeUseCase
 import com.food.domain.usecaseImpl.CategoryDetailUseCase
+import com.food.domain.usecaseImpl.DeleteIdUseCase
 import com.food.domain.usecaseImpl.IsRecipeSavedUse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -21,6 +22,7 @@ class CategoryDetailVM @Inject constructor(
     private val categoryDetailUseCase: CategoryDetailUseCase,
     private val addRecipeUseCase: AddRecipeUseCase,
     private val isRecipeSavedUse: IsRecipeSavedUse,
+    private val deleteIdUseCase: DeleteIdUseCase,
 
     savedStateHandle: SavedStateHandle
 
@@ -39,18 +41,23 @@ class CategoryDetailVM @Inject constructor(
     val categoryDetail get() = _categoryDetail.asStateFlow()
 
 
-    fun getDetail(id: Int) = viewModelScope.launch {
+    private fun getDetail(id: Int) = viewModelScope.launch {
         categoryDetailUseCase(id).collect {
             _categoryDetail.emit(it)
         }
     }
     fun addRecipe(recipe:CategoryDetailUIModel)=viewModelScope.launch {
         addRecipeUseCase.invoke(recipe)
+        isRecipeSaved(recipe.id)
     }
-    fun isRecipeSaved(recipeId: Int) = viewModelScope.launch {
+    private fun isRecipeSaved(recipeId: Int) = viewModelScope.launch {
         isRecipeSavedUse.invoke(recipeId).collect{
             _isSavedRecipe.emit(it)
 
         }
+    }
+    fun deleteID(id:Int) =viewModelScope.launch {
+        deleteIdUseCase.invoke(id)
+        isRecipeSaved(id)
     }
 }
