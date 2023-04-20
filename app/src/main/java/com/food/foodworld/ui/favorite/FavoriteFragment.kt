@@ -140,7 +140,7 @@ class FavoriteFragment : Fragment() {
             viewModel.tasksEvent.collect{event->
                 when (event){
                     is FavoriteVM.Event.ShowUndoMessage->{
-                        Snackbar.make(requireView(),"ss",3000).setAction("Undo"){
+                        Snackbar.make(requireView(),"Deleted",3000).setAction("Undo"){
                             viewModel.undoRecipe(event.recipe)
 
                         }.show()
