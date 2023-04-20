@@ -17,6 +17,7 @@ import com.food.foodworld.databinding.FragmentFavoriteBinding
 import com.food.foodworld.utility.gone
 import com.food.foodworld.utility.visible
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -107,7 +108,7 @@ class FavoriteFragment : Fragment() {
 
 
 
-    fun collectData() {
+    private fun collectData() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.getAllRecipe.collect {response->
 
@@ -130,6 +131,20 @@ class FavoriteFragment : Fragment() {
                     }
 
                     is Resource.Error -> {
+                    }
+                }
+
+            }
+        }
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.tasksEvent.collect{event->
+                when (event){
+                    is FavoriteVM.Event.ShowUndoMessage->{
+                        Snackbar.make(requireView(),"ss",3000).setAction("Undo"){
+                            viewModel.undoRecipe(event.recipe)
+
+                        }.show()
+
                     }
                 }
 

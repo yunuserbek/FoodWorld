@@ -8,9 +8,12 @@ import com.food.common.model.RandomUIModel
 import com.food.foodworld.R
 import com.food.foodworld.utility.glideImage
 import com.food.foodworld.databinding.ItemHomeRandomBinding
+import com.food.foodworld.utility.ClickedAny
 
-class RandomAdapter : RecyclerView.Adapter<RandomAdapter.RandomViewHolder>() {
+class RandomAdapter( private val randomAdapter: ClickedAny) : RecyclerView.Adapter<RandomAdapter.RandomViewHolder>() {
     var itemlist = ArrayList<RandomUIModel>()
+
+
 
 
 
@@ -31,6 +34,10 @@ class RandomAdapter : RecyclerView.Adapter<RandomAdapter.RandomViewHolder>() {
             fun bind(item: RandomUIModel)= with(binding){
                 binding.ivCategoryItem.glideImage(item.image)
                 binding.tvCategoryName.text = item.title
+               binding.root.setOnClickListener {
+                   randomAdapter.onClickedAny(id =item.id)
+               }
+
 
 
             }

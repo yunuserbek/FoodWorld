@@ -33,6 +33,7 @@ class CategoryDetailVM @Inject constructor(
     init {
         savedStateHandle.get<Int>(STATE_KEY_RECIPE_ID)?.let {
             getDetail(it)
+            isRecipeSaved(it)
         }
     }
 

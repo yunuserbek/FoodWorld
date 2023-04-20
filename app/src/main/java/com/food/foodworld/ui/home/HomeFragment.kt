@@ -24,12 +24,13 @@ class HomeFragment : Fragment(R.layout.fragment_home) ,ClickedAny{
     private val binding by viewBinding(FragmentHomeBinding::bind)
     private val viewModel: HomeVM by viewModels()
 
-    private val randomAdapter by lazy { RandomAdapter() }
+    private val randomAdapter by lazy { RandomAdapter(this) }
     private val categoryNameAdapter by lazy { CategoryNameAdapter(viewModel.getMenu(),this) }
   //  lateinit var categoryNameAdapter: CategoryNameAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
         viewModel.getRandomFood(10)
 
@@ -73,7 +74,13 @@ removeMenu()
 
         val action =HomeFragmentDirections.actionFoodFragmentToCategoryFragment(title?:"")
       findNavController().navigate(action)
+        id?.let {
+
+
+        }
 
     }
+
+
 
 }

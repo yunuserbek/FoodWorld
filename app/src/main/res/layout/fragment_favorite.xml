@@ -24,9 +24,11 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
+
+        app:layout_constraintBottom_toTopOf="@+id/tvGarbage"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        android:layout_marginBottom="10dp"/>
 
     <ImageView
         android:id="@+id/tvGarbage"
@@ -39,6 +41,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
     <TextView
+        android:visibility="gone"
         android:id="@+id/tvEmptyRecipe"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

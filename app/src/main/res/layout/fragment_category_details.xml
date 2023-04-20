@@ -35,8 +35,8 @@
             app:lottie_loop="true"
             app:lottie_rawRes="@raw/loading" />
         <ImageView
-            android:background="@color/black"
-            android:backgroundTint="@color/black"
+            android:background="@color/trans"
+            android:backgroundTint="@color/trans"
             android:id="@+id/favorite"
             android:layout_width="30dp"
             android:layout_gravity="end"

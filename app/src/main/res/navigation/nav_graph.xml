@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_foodFragment_to_categoryFragment"
             app:destination="@id/categoryFragment" />
+        <action
+            android:id="@+id/action_foodFragment_to_categoryDetailsFragment"
+            app:destination="@id/categoryDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/splashFragment"
@@ -21,7 +24,8 @@
         tools:layout="@layout/fragment_splash" >
         <action
             android:id="@+id/action_splashFragment_to_foodFragment"
-            app:destination="@id/foodFragment" />
+            app:destination="@id/foodFragment"
+            app:popUpTo="@id/nav_graph" />
     </fragment>
     <fragment
         android:id="@+id/categoryFragment"
