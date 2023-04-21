@@ -18,16 +18,12 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 @HiltViewModel
 class CategoryDetailVM @Inject constructor(
-
     private val categoryDetailUseCase: CategoryDetailUseCase,
     private val addRecipeUseCase: AddRecipeUseCase,
     private val isRecipeSavedUse: IsRecipeSavedUse,
     private val deleteIdUseCase: DeleteIdUseCase,
-
     savedStateHandle: SavedStateHandle
-
-) :
-    ViewModel() {
+):ViewModel() {
     private val _isSavedRecipe = MutableStateFlow<Resource<Boolean>>(Resource.Loading)
     val isSavedRecipe=_isSavedRecipe.asStateFlow()
     init {
