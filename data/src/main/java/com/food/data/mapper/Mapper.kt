@@ -1,14 +1,19 @@
 package com.food.data.mapper
 
+import android.app.appsearch.SearchResult
+import android.app.appsearch.SearchResults
 import com.food.common.model.CategoryDetailUIModel
 import com.food.common.model.IngredientUI
 import com.food.common.model.RandomUIModel
+import com.food.common.model.SearchUIModel
 import com.food.common.model.StepUI
 import com.food.common.remote.AnalyzedInstruction
 import com.food.common.remote.Recipe
 import com.food.common.remote.Step
 import com.food.common.remote.categorydetailresponse.CategoryDetailResponse
 import com.food.common.remote.categorydetailresponse.ExtendedIngredient
+import com.food.common.remote.searchresponse.Result
+import com.food.common.remote.searchresponse.SearchResponse
 
 
 fun List<Recipe>.RandomUIModelMap() = map {
@@ -48,7 +53,7 @@ fun CategoryDetailResponse.toDetailMapper()= CategoryDetailUIModel(
     sourceUrl = sourceUrl.orEmpty(),
     instructions = instructions.orEmpty(),
     extendedIngredients = extendedIngredients!!.map { it!!.toEx() },
-    step = analyzedInstructions[0].steps.toStep(),
+    step = analyzedInstructions.emptyControl(),
     imageFilePath = ""
 
 )
@@ -66,4 +71,10 @@ fun List<AnalyzedInstruction>.emptyControl(): List<StepUI> {
         emptyList()
     }
 }
+fun Result.toSearchMap()=SearchUIModel(
+    id = id?:0,
+    image = image?:"",
+    imageType = imageType?:"",
+    title = title?:""
+)
 

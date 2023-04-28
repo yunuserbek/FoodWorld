@@ -4,6 +4,7 @@ import androidx.room.Query
 import com.food.common.Resource
 import com.food.common.model.CategoryDetailUIModel
 import com.food.common.model.RandomUIModel
+import com.food.common.model.SearchUIModel
 import kotlinx.coroutines.flow.Flow
 
 interface FoodRepository {
@@ -24,4 +25,5 @@ suspend fun deleteFavoriteRecipe(recipeId: CategoryDetailUIModel)
 
 suspend fun deleteRecipe(recipeId:Int)
 
+suspend fun searchGet(query:String):Flow<Resource<List<SearchUIModel>>>
 }

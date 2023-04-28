@@ -7,14 +7,14 @@ import androidx.paging.PagingData
 import com.food.common.Resource
 import com.food.common.model.CategoryDetailUIModel
 import com.food.common.model.RandomUIModel
+import com.food.common.model.SearchUIModel
 import com.food.data.mapper.RandomUIModelMap
 import com.food.data.mapper.toDetailMapper
+import com.food.data.mapper.toSearchMap
 import com.food.domain.local.LocalDataSource
 import com.food.domain.repository.FoodRepository
-
 import com.food.domain.source.remote.RemoteDataSource
 import com.food.paging.FoodPagingSource
-
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import java.io.IOException
@@ -103,8 +103,22 @@ class FoodRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun deleteFavoriteRecipe(recipeId: CategoryDetailUIModel) =localDataSource.deleteRecipeFavorite(recipeId)
+    override suspend fun deleteFavoriteRecipe(recipeId: CategoryDetailUIModel) =
+        localDataSource.deleteRecipeFavorite(recipeId)
+
     override suspend fun deleteRecipe(recipeId: Int) = localDataSource.deleteRecipe(recipeId)
+    override suspend fun searchGet(query: String): Flow<Resource<List<SearchUIModel>>> = flow {
+        emit(Resource.Loading)
+        val response = try {
+            remoteDataSource.searchRecipe(query,"","","","")
+        }catch (e:IOException){
+            emit(Resource.Error(e))
+            null
+        }
+        response?.let {
+            emit(Resource.Success(it.results!!.map { it!!.toSearchMap() }))
+        }
+    }
 
 }
 

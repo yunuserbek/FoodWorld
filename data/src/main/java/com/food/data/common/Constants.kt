@@ -12,5 +12,6 @@ object Constants {
 
 
     const val RecipeMade = "recipe"
+    const val SEARCH = "complexSearch"
 
 }
