@@ -78,3 +78,19 @@ fun Result.toSearchMap()=SearchUIModel(
     title = title?:""
 )
 
+    fun List<RandomUIModel>.randomToSearchResultUI() = map {
+    SearchUIModel(
+        id = it.id,
+        image = it.image?:"",
+        imageType = "jpg",
+        title = it.title
+    )
+
+
+}
+fun RandomUIModel.toMapSearch() =SearchUIModel(
+    id = id,
+    image = image.orEmpty(),
+    imageType = "jpg",
+    title = title
+)
